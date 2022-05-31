@@ -8,6 +8,7 @@ import junit.framework.AssertionFailedError;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Bean;
@@ -56,6 +57,7 @@ class TestcontainersApplicationTests {
 	@EntityScan
 	static class Config {
 		@Bean
+		@LiquibaseDataSource
 		public DataSource dataSource() {
 			HikariConfig dbConfig = new HikariConfig();
 			dbConfig.setJdbcUrl(DB.getJdbcUrl());
