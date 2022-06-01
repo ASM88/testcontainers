@@ -4,10 +4,10 @@ databaseChangeLog:
       author: sdrabik
       changes:
         - createTable:
-            tableName: USERS
+            tableName: users
             columns:
               - column:
-                  name: ID
+                  name: id
                   type: int
                   constraints:
                     primaryKey: true
@@ -19,5 +19,5 @@ databaseChangeLog:
                   name: displayname
                   type: varchar(255)
         - createSequence:
-            sequenceName: "USER_SEQUENCE"
+            sequenceName: user_sequence
             incrementBy: 50

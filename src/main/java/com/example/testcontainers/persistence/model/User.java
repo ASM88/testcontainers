@@ -16,15 +16,15 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQUENCE")
-	@SequenceGenerator(name = "USER_SEQUENCE")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+	@SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence")
 	private Integer id;
 
 	private String username;

@@ -1,0 +1,22 @@
+# Use root:admin as credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: admin
+      MARIADB_DATABASE: testcontainers
+    volumes:
+      - "./data:/var/lib/mysql:rw"
+    ports:
+      - 3306:3306
+
+# http://localhost:9080/ login root:admin
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 9080:8080

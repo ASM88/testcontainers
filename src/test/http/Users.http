@@ -1,0 +1,18 @@
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "displayname": "display1",
+  "username": "user1"
+}
+
+###
+
+GET {{baseUrl}}/users
+Content-Type: application/json
+
+###
+
+GET {{baseUrl}}/users/3
+Content-Type: application/json
+
