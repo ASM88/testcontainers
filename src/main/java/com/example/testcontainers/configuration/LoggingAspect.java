@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 @Aspect
 @Component
@@ -23,16 +24,17 @@ public class LoggingAspect {
 
 	@Around("applicationPointcut()")
 	public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+		UUID context = UUID.randomUUID();
 		long startTime = System.currentTimeMillis();
 		if (log.isDebugEnabled()) {
-			log.debug("Enter: {}.{}() with argument[s] = {}", joinPoint.getSignature().getDeclaringTypeName(),
+			log.debug("Enter [{}]: {}.{}() with argument[s] = {}", context, joinPoint.getSignature().getDeclaringTypeName(),
 					joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
 		}
 		try {
 			Object result = joinPoint.proceed();
 			long endTime = System.currentTimeMillis();
 			if (log.isDebugEnabled()) {
-				log.debug("Exit: {}.{}() with result = {}. Executed in {}ms.", joinPoint.getSignature().getDeclaringTypeName(),
+				log.debug("Exit[{}]: {}.{}() with result = {}. Executed in {}ms.", context, joinPoint.getSignature().getDeclaringTypeName(),
 						joinPoint.getSignature().getName(), result, endTime - startTime);
 			}
 			return result;
